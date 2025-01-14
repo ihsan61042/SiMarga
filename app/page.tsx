@@ -43,7 +43,13 @@ const LoginPage: React.FC = () => {
         localStorage.setItem("Role", Output.Role);
         localStorage.setItem("IdUser", Output.IdUser.toString());
         setIsLoggedIn(true);
-        window.location.href = "../"; // alert("Login success.");
+        if (Output.Role === "Admin") {
+          window.location.href = "/admin";
+        } else if (Output.Role === "PICSekolah") {
+          window.location.href = "/guru";
+        } else if (Output.Role === "Siswa") {
+          window.location.href = "/siswa";
+        }
       } else {
         alert("Login failed. Please check your username and password.");
       }
@@ -65,7 +71,7 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-green-300 to-green-600">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-white to-blue-300">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
         {isLoggedIn ? (
@@ -114,7 +120,7 @@ const LoginPage: React.FC = () => {
             </div>
             <div className="flex items-center justify-between">
               <button
-                className="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-blue-300 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Sign In
